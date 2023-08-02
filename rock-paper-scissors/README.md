@@ -1,0 +1,1 @@
+Rock paper scissors game, using scriptable object variables to decouple scene object. No scene object depends on another scene object. They all simply change variables. The only exception is that the play button is coupled to the game manager.  
