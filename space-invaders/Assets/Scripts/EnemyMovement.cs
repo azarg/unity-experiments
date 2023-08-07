@@ -21,10 +21,13 @@ public class EnemyMovement : MonoBehaviour {
         }
         else {
             // direction hasn't changed from last frame, continue moving
-            // and change direction if bounds have been hit 
             MoveInDirection(currentDirection);
-            ChangeDirectionIfBoundsHit(currentDirection);
         }
+    }
+
+    private void LateUpdate() {
+        // change direction if bounds have been hit 
+        ChangeDirectionIfBoundsHit();
     }
 
     private void MoveInDirection(Direction direction) {
@@ -32,15 +35,16 @@ public class EnemyMovement : MonoBehaviour {
         transform.Translate(waveData.GetWaveSpeed() * Time.deltaTime * moveVector);
     }
 
-    private void ChangeDirectionIfBoundsHit(Direction direction) {
+    private void ChangeDirectionIfBoundsHit() {
+        var direction = waveData.GetDirection();
         if (direction == Direction.RIGHT) {
             if (transform.position.x > bounds.right) {
-                waveData.ChangeDirection();
+                waveData.SetDirection(Direction.LEFT);
             }
         }
         if (direction == Direction.LEFT) {
             if (transform.position.x < bounds.left) {
-                waveData.ChangeDirection();
+                waveData.SetDirection(Direction.RIGHT);
             }
         }
     }
