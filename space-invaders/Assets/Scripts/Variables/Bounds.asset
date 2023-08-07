@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f71029c77625e942b7384e1c39a1f2d, type: 3}
   m_Name: Bounds
   m_EditorClassIdentifier: 
-  top: 6
-  bottom: -6.5
-  left: -7
-  right: 7
-  invastionLine: -5.5
+  top: 5
+  bottom: -5
+  left: -6.5
+  right: 6.5
+  invastionLine: -5.2
   enemySize: 1
