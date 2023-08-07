@@ -120,7 +120,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b21080a5c76c034e8a27f4cc5c34c9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  score: {fileID: 11400000, guid: 3ee805465e97d3d4e8eee03261a7415c, type: 2}
   waveData: {fileID: 11400000, guid: b39b1526c0152c94d952aab5b3588059, type: 2}
+  scoreValue: 0
 --- !u!114 &1665324173731096241
 MonoBehaviour:
   m_ObjectHideFlags: 0

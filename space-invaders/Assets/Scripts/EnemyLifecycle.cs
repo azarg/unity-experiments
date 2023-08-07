@@ -3,15 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyLifecycle : MonoBehaviour {
-
-    [SerializeField] WaveData waveData;
-    [SerializeField] BoundsVariable bounds;
+    [SerializeField] private IntVariable score;
+    [SerializeField] private WaveData waveData;
+    [SerializeField] private int scoreValue;
 
     private void OnEnable() {
         waveData.AddEnemy();
     }
 
     private void OnDestroy() {
+        score.Increase(this.scoreValue);
+        waveData.IncreaseWaveSpeed();
         waveData.RemoveEnemy();
     }
 
@@ -19,7 +21,6 @@ public class EnemyLifecycle : MonoBehaviour {
         if (collision.transform.TryGetComponent<Bullet>(out _)) {
             Destroy(gameObject);
             Destroy(collision.gameObject);
-            waveData.IncreaseWaveSpeed();
         }
     }
 

@@ -7,4 +7,5 @@ public class BoundsVariable : ScriptableObject {
     public float left;
     public float right;
     public float invastionLine;
+    public float enemySize;
 }

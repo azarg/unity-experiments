@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de552aff2c53dad4fbef9296062be4c4, type: 3}
   m_Name: WaveData
   m_EditorClassIdentifier: 
-  startingSpeed: 2
+  startingSpeed: 1
   startingSpeedIncrement: 0.2
-  speed: 16.59999
-  direction: 0
-  speedIncrement: 0.2
+  speed: 0
+  direction: 1
+  speedIncrement: 0
   moveDownAmount: 0.3
   enemyCount: 0

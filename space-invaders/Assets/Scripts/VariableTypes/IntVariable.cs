@@ -13,6 +13,10 @@ public class IntVariable : ScriptableObject {
         OnValueChanged?.Invoke();
     }
 
+    public void Increase(int increaseBy) {
+        SetValue(value + increaseBy);
+    }
+
     public int GetValue() => value;
 
     private void OnEnable() {

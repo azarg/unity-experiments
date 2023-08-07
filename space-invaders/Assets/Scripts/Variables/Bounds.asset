@@ -17,3 +17,4 @@ MonoBehaviour:
   left: -7
   right: 7
   invastionLine: -5.5
+  enemySize: 1

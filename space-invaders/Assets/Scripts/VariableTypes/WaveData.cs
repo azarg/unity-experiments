@@ -9,7 +9,7 @@ public class WaveData : ScriptableObject {
     public event Action OnNoEnemiesLeft;
 
     [SerializeField] private float startingSpeed = 2f;
-    [SerializeField] private float startingSpeedIncrement = 0.2f;
+    [SerializeField] private float startingSpeedIncrement = 0.1f;
     [SerializeField] private float speed;
     [SerializeField] private Direction direction;
     [SerializeField] private float speedIncrement;
