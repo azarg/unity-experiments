@@ -6,4 +6,5 @@ public class BoundsVariable : ScriptableObject {
     public float bottom;
     public float left;
     public float right;
+    public float invastionLine;
 }

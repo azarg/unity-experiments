@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 7662564129563033066}
   - component: {fileID: 2763630527057988856}
   - component: {fileID: 3645603706141084820}
-  - component: {fileID: 2114073036441595175}
   - component: {fileID: -2447461419006620308}
+  - component: {fileID: 1665324173731096241}
   m_Layer: 6
   m_Name: Enemy
   m_TagString: Untagged
@@ -108,20 +108,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &2114073036441595175
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1926953956577718206}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 54a179249f751fd438f7d7facdfb37c8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  waveData: {fileID: 11400000, guid: b39b1526c0152c94d952aab5b3588059, type: 2}
-  bounds: {fileID: 11400000, guid: 2eec57b7313dd9942a49b19f20ff72b5, type: 2}
 --- !u!114 &-2447461419006620308
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -135,6 +121,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waveData: {fileID: 11400000, guid: b39b1526c0152c94d952aab5b3588059, type: 2}
+--- !u!114 &1665324173731096241
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1926953956577718206}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54a179249f751fd438f7d7facdfb37c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waveData: {fileID: 11400000, guid: b39b1526c0152c94d952aab5b3588059, type: 2}
+  bounds: {fileID: 11400000, guid: 2eec57b7313dd9942a49b19f20ff72b5, type: 2}
 --- !u!1 &4756971555873065749
 GameObject:
   m_ObjectHideFlags: 0

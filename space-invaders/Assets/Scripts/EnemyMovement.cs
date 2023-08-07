@@ -15,8 +15,10 @@ public class EnemyMovement : MonoBehaviour {
         Direction currentDirection = waveData.GetDirection();
         if (currentDirection != lastDirection) {
             // direction has changed (meaning one of the enemies has hit the bounds)
-            // move down and remember the current direction
+            // move down, check if enemies have won (invaded)
+            // and remember the current direction
             MoveDown();
+            HandleEnemyInvasion();
             lastDirection = currentDirection;
         }
         else {
@@ -51,5 +53,11 @@ public class EnemyMovement : MonoBehaviour {
 
     private void MoveDown() {
         transform.Translate(Vector3.down * waveData.GetMoveDownAmount());
+    }
+
+    private void HandleEnemyInvasion() {
+        if (transform.position.y < bounds.invastionLine) {
+            GameManager.Instance.GameOver();
+        }
     }
 }

@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: WaveData
   m_EditorClassIdentifier: 
   startingSpeed: 2
-  speed: 2
+  startingSpeedIncrement: 0.2
+  speed: 16.59999
   direction: 0
   speedIncrement: 0.2
   moveDownAmount: 0.3
+  enemyCount: 0
