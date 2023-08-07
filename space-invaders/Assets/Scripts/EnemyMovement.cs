@@ -5,14 +5,21 @@ using UnityEngine;
 public class EnemyMovement : MonoBehaviour {
     [SerializeField] WaveData waveData;
     [SerializeField] BoundsVariable bounds;
+    [SerializeField] Animator animator;
+    private readonly string SPEED = "speed";
+    private readonly float moveDownBy = 0.3f;// as a ratio of enemy size
 
     // need to remember the last direction, because direction may be changed
     // by other enemies. and if it changes, then I need to move down and
     // remember the new direction.
     private Direction lastDirection;
 
+    // remeber the last animation speed so that we dont have to change it every frame
+    private float lastAnimationSpeed;
+
     private void Update() {
         Direction currentDirection = waveData.GetDirection();
+        HandleAnimation();
         if (currentDirection != lastDirection) {
             // direction has changed (meaning one of the enemies has hit the bounds)
             // move down, check if enemies have won (invaded)
@@ -30,6 +37,14 @@ public class EnemyMovement : MonoBehaviour {
     private void LateUpdate() {
         // change direction if bounds have been hit 
         ChangeDirectionIfBoundsHit();
+    }
+
+    private void HandleAnimation() {
+        float animationSpeed = waveData.GetAnimationSpeed();
+        if (animationSpeed != lastAnimationSpeed) {
+            animator.SetFloat(SPEED, animationSpeed);
+            lastAnimationSpeed = animationSpeed;
+        }
     }
 
     private void MoveInDirection(Direction direction) {
@@ -52,7 +67,7 @@ public class EnemyMovement : MonoBehaviour {
     }
 
     private void MoveDown() {
-        transform.Translate(Vector3.down * waveData.GetMoveDownAmount());
+        transform.Translate(Vector3.down * bounds.enemySize * moveDownBy);
     }
 
     private void HandleEnemyInvasion() {
