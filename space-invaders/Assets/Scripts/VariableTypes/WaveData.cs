@@ -27,12 +27,8 @@ public class WaveData : ScriptableObject {
         return direction;
     }
 
-    public void ChangeDirection() {
-        if (direction == Direction.LEFT) {
-            direction = Direction.RIGHT;
-        } else {
-            direction = Direction.LEFT;
-        }
+    public void SetDirection(Direction direction) {
+        this.direction = direction;
     }
 
     public float GetMoveDownAmount() {
