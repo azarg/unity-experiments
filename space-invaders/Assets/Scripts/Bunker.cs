@@ -11,6 +11,7 @@ public class Bunker : MonoBehaviour {
     private Vector2 pixelCoordinateOffset;
 
     private void Start() {
+        // Create a copy of the bunker sprite since we dont want to modify the original sprite
         spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.sprite = CopySprite(spriteRenderer);
         texture = spriteRenderer.sprite.texture;
@@ -31,9 +32,7 @@ public class Bunker : MonoBehaviour {
     public void Hit(Bullet bullet) {
         bool hit = false;
         for (int i = 0; i < bullet.PixelCount; i++) {
-            //Profiler.BeginSample("get coordinates");
             Vector2 r = GetTargetPixelCoordinate(bullet.Pixels[i], bullet);
-            //Profiler.EndSample();
             int target_x = (int)r.x;
             int target_y = (int)r.y;
             if (target_x >= 0 && target_x < width) {

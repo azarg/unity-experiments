@@ -12,6 +12,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player bullet
       objectReference: {fileID: 0}
+    - target: {fileID: 622248733061201238, guid: aeb79ca57f7509a4dac25b8f2af2151c, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 3001338915804734406, guid: aeb79ca57f7509a4dac25b8f2af2151c, type: 3}
       propertyPath: direction
       value: 1

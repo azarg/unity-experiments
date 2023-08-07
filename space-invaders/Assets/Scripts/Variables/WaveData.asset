@@ -9,10 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f71029c77625e942b7384e1c39a1f2d, type: 3}
-  m_Name: Bounds
+  m_Script: {fileID: 11500000, guid: de552aff2c53dad4fbef9296062be4c4, type: 3}
+  m_Name: WaveData
   m_EditorClassIdentifier: 
-  top: 6
-  bottom: -6.5
-  left: -7
-  right: 7
+  startingSpeed: 2
+  speed: 2
+  direction: 0
+  speedIncrement: 0.2
+  moveDownAmount: 0.3
