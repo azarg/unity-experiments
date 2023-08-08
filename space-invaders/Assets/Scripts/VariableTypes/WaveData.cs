@@ -14,6 +14,8 @@ public class WaveData : ScriptableObject {
     [SerializeField] private float animationSpeedIncrement;
     [SerializeField] private Direction direction;
 
+    [SerializeField] private float fireRate = 0.2f;
+    [SerializeField] private float fireChance = 0.3f;
     [SerializeField] private float startingSpeed = 2f;
     [SerializeField] private float startingSpeedIncrement = 0.1f;
     [SerializeField] private float startingAnimationSpeed = 1f;
@@ -62,7 +64,15 @@ public class WaveData : ScriptableObject {
         this.direction = direction;
     }
 
-    internal float GetAnimationSpeed() {
+    public float GetAnimationSpeed() {
         return animationSpeed;
+    }
+
+    public float GetFireRate() {
+        return fireRate;
+    }
+
+    public float GetFireChance() {
+        return fireChance;
     }
 }

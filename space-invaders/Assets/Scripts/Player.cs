@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class Player : MonoBehaviour {
     [SerializeField] float moveSpeed;
+    [SerializeField] float fireDelay = 1f;
     [SerializeField] BoundsVariable bounds;
     [SerializeField] Transform bulletPrefab;
     [SerializeField] Transform bulletSpawn;
+    private bool canFire = true;
+    private float fireTime;
 
     private void Update() {
         HandleMovement();
@@ -30,8 +33,16 @@ public class Player : MonoBehaviour {
     }
 
     private void HandleFire() {
-        if (Input.GetKeyDown(KeyCode.Space)) {
-            var bullet = Instantiate(bulletPrefab, bulletSpawn.position, Quaternion.identity);
+        // enable fire after delay
+        if (fireTime + fireDelay < Time.time) {
+            canFire = true;
+        }
+        if (canFire) {
+            if (Input.GetKeyDown(KeyCode.Space)) {
+                Instantiate(bulletPrefab, bulletSpawn.position, Quaternion.identity);
+                canFire = false;
+                fireTime = Time.time;
+            }
         }
     }
 }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyLifecycle : MonoBehaviour {
+public class Enemy : MonoBehaviour {
     [SerializeField] private IntVariable score;
     [SerializeField] private WaveData waveData;
     [SerializeField] private int scoreValue;
