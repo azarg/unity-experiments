@@ -10,30 +10,33 @@ public class Bunker : MonoBehaviour {
     [SerializeField] int maxBulletPenetration = 1;
     private SpriteRenderer spriteRenderer;
     private Texture2D texture;
+    private Sprite originalSprite;
     private int width;
     private int height;
     private float pixelsPerUnit;
     private Vector2 pixelCoordinateOffset;
-
-    private void Start() {
-        // Create a copy of the bunker sprite since we dont want to modify the original sprite
+    
+    private void Start() {     
         spriteRenderer = GetComponent<SpriteRenderer>();
-        spriteRenderer.sprite = CopySprite(spriteRenderer);
-        texture = spriteRenderer.sprite.texture;
+        originalSprite = spriteRenderer.sprite;
+
+        // Create a copy of the bunker sprite since we dont want to modify the original sprite
+        ResetSprite();
         width = texture.width;
         height = texture.height;
         pixelsPerUnit = spriteRenderer.sprite.pixelsPerUnit;
         pixelCoordinateOffset = new Vector2(width / 2, height / 2);
     }
 
-    private Sprite CopySprite(SpriteRenderer spriteRenderer) {
-        var _texture = spriteRenderer.sprite.texture;
+    public void ResetSprite() {
+        var _texture = originalSprite.texture;
         var copy = new Texture2D(_texture.width, _texture.height, _texture.format, false);
         copy.SetPixels(_texture.GetPixels());
         copy.Apply();
-        var sprite = Sprite.Create(copy, spriteRenderer.sprite.rect, new Vector2(0.5f, 0.5f), spriteRenderer.sprite.pixelsPerUnit);
-        sprite.texture.filterMode = spriteRenderer.sprite.texture.filterMode;
-        return sprite;
+        var newSprite = Sprite.Create(copy, originalSprite.rect, new Vector2(0.5f, 0.5f), originalSprite.pixelsPerUnit);
+        newSprite.texture.filterMode = originalSprite.texture.filterMode;
+        spriteRenderer.sprite = newSprite;
+        texture = spriteRenderer.sprite.texture;
     }
 
     private void DrawSplash(int center_x, int center_y, BulletDirection dir, Texture2D splash) {

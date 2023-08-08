@@ -123,6 +123,17 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &80174966 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: -8917507659675736174, guid: 49e16bda2330b914892dd0908a6d3be6, type: 3}
+  m_PrefabInstance: {fileID: 377662767}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22edd740bc1708e4e8b72257edc4f10b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &353761429
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -133,7 +144,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3535581754887194700, guid: 49e16bda2330b914892dd0908a6d3be6, type: 3}
       propertyPath: m_Name
-      value: Bunker (3)
+      value: Bunker1
       objectReference: {fileID: 0}
     - target: {fileID: 7684329549997745316, guid: 49e16bda2330b914892dd0908a6d3be6, type: 3}
       propertyPath: m_LocalPosition.x
@@ -190,7 +201,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3535581754887194700, guid: 49e16bda2330b914892dd0908a6d3be6, type: 3}
       propertyPath: m_Name
-      value: Bunker (1)
+      value: Bunker3
       objectReference: {fileID: 0}
     - target: {fileID: 7684329549997745316, guid: 49e16bda2330b914892dd0908a6d3be6, type: 3}
       propertyPath: m_LocalPosition.x
@@ -237,6 +248,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 49e16bda2330b914892dd0908a6d3be6, type: 3}
+--- !u!114 &385849070 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: -8917507659675736174, guid: 49e16bda2330b914892dd0908a6d3be6, type: 3}
+  m_PrefabInstance: {fileID: 353761429}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22edd740bc1708e4e8b72257edc4f10b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &393229566
 GameObject:
   m_ObjectHideFlags: 0
@@ -266,12 +288,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09f76afe640e81547aae6cc9c83da4f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 262262279568342602, guid: 01dd65348e2ebf440b0333af351c6b0e, type: 3}
+  bulletPrefabs:
+  - {fileID: 262262279568342602, guid: 01dd65348e2ebf440b0333af351c6b0e, type: 3}
+  - {fileID: 262262279568342602, guid: ffa775c3884843e479e4d16f7495842a, type: 3}
+  - {fileID: 262262279568342602, guid: cf282000494d679489a457968b6f5a31, type: 3}
   waveData: {fileID: 11400000, guid: b39b1526c0152c94d952aab5b3588059, type: 2}
   enemyPrefabs:
   - {fileID: 5343593599027399024, guid: 6c3078b12de2e454eaa32f903e15f6d7, type: 3}
   - {fileID: 5343593599027399024, guid: 3aa29489998a22c4796f68ef5087310a, type: 3}
   - {fileID: 5343593599027399024, guid: 742f381cd70c7c246b5becb08989da3e, type: 3}
+  bunkers:
+  - {fileID: 668059122}
+  - {fileID: 80174966}
+  - {fileID: 1511445573}
+  - {fileID: 385849070}
   bounds: {fileID: 11400000, guid: 2eec57b7313dd9942a49b19f20ff72b5, type: 2}
 --- !u!4 &393229568
 Transform:
@@ -743,6 +773,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   score: {fileID: 11400000, guid: 3ee805465e97d3d4e8eee03261a7415c, type: 2}
   scoreText: {fileID: 399851033}
+--- !u!114 &668059122 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: -8917507659675736174, guid: 49e16bda2330b914892dd0908a6d3be6, type: 3}
+  m_PrefabInstance: {fileID: 637125675952515457}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22edd740bc1708e4e8b72257edc4f10b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &948663612
 GameObject:
   m_ObjectHideFlags: 0
@@ -908,51 +949,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1309661649
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1309661651}
-  - component: {fileID: 1309661650}
-  m_Layer: 0
-  m_Name: GameManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1309661650
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1309661649}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 553150a75f5f40348a56e9ea6ed4dc5c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  waveData: {fileID: 11400000, guid: b39b1526c0152c94d952aab5b3588059, type: 2}
---- !u!4 &1309661651
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1309661649}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1394402863
 GameObject:
   m_ObjectHideFlags: 0
@@ -1037,6 +1033,17 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1511445573 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: -8917507659675736174, guid: 49e16bda2330b914892dd0908a6d3be6, type: 3}
+  m_PrefabInstance: {fileID: 1765418082}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22edd740bc1708e4e8b72257edc4f10b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1660354463
 GameObject:
   m_ObjectHideFlags: 0
@@ -1115,7 +1122,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3535581754887194700, guid: 49e16bda2330b914892dd0908a6d3be6, type: 3}
       propertyPath: m_Name
-      value: Bunker (2)
+      value: Bunker2
       objectReference: {fileID: 0}
     - target: {fileID: 7684329549997745316, guid: 49e16bda2330b914892dd0908a6d3be6, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1278,7 +1285,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3535581754887194700, guid: 49e16bda2330b914892dd0908a6d3be6, type: 3}
       propertyPath: m_Name
-      value: Bunker
+      value: Bunker4
       objectReference: {fileID: 0}
     - target: {fileID: 7684329549997745316, guid: 49e16bda2330b914892dd0908a6d3be6, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1339,4 +1346,3 @@ SceneRoots:
   - {fileID: 1765418082}
   - {fileID: 353761429}
   - {fileID: 393229568}
-  - {fileID: 1309661651}

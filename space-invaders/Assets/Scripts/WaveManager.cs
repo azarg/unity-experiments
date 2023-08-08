@@ -2,27 +2,40 @@ using System.Collections;
 using UnityEngine;
 
 public class WaveManager : MonoBehaviour {
-    [SerializeField] private GameObject bulletPrefab;
+    [SerializeField] private GameObject[] bulletPrefabs;
     [SerializeField] private WaveData waveData;
     [SerializeField] private GameObject[] enemyPrefabs;
+    [SerializeField] private Bunker[] bunkers;
+
     [SerializeField] BoundsVariable bounds;
     internal readonly int columns = 11;
     internal readonly int rows = 5;
     internal GameObject[,] enemies;
+    private int waveNumber;
 
     private void Start () {
         enemies = new GameObject[rows, columns];
         waveData.OnNoEnemiesLeft += WaveData_OnNoEnemiesLeft;
+        waveNumber = 1;
         InvokeRepeating(nameof(StartWave), 1, 0);
     }
 
     private void WaveData_OnNoEnemiesLeft() {
-        Debug.Log("wave is over");
+        waveNumber++;
+        waveData.RestSpeedForWave(waveNumber);
+        StartWave();
     }
 
     private void StartWave () {
+        ResetBunkers();
         SetupEnemies();
         InvokeRepeating(nameof(HandleFire), 1, waveData.GetFireRate());
+    }
+
+    private void ResetBunkers() {
+        for(int i = 0; i< bunkers.Length; i++) {
+            bunkers[i].ResetSprite();
+        }
     }
 
     private void SetupEnemies () {
@@ -68,7 +81,8 @@ public class WaveManager : MonoBehaviour {
             if (enemies[i, column] != null) {
                 var pos = enemies[i, column].transform.position;
                 pos.y -= bounds.enemySize / 2;
-                Instantiate(bulletPrefab, pos, Quaternion.identity);
+                int bulletIndex = Random.Range(0, 3);
+                Instantiate(bulletPrefabs[bulletIndex], pos, Quaternion.identity);
                 break;
             }
         }

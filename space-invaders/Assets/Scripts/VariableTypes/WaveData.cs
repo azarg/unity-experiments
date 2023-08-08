@@ -8,33 +8,35 @@ public class WaveData : ScriptableObject {
 
     public event Action OnNoEnemiesLeft;
 
-    [SerializeField] private float speed;
-    [SerializeField] private float animationSpeed;
-    [SerializeField] private float speedIncrement;
-    [SerializeField] private float animationSpeedIncrement;
-    [SerializeField] private Direction direction;
+    [SerializeField] private float currentSpeed;
+    [SerializeField] private float currentAnimationSpeed;
+
+    [SerializeField] private float startingSpeed = 2f;
+    [SerializeField] private float startingAnimationSpeed = 1f;
+
+    [SerializeField] private float speedIncrement = 0.2f;
+    [SerializeField] private float animationSpeedIncrement = 0.2f;
+    [SerializeField] private float waveSpeedIncrement = 0.2f;
 
     [SerializeField] private float fireRate = 0.2f;
     [SerializeField] private float fireChance = 0.3f;
-    [SerializeField] private float startingSpeed = 2f;
-    [SerializeField] private float startingSpeedIncrement = 0.1f;
-    [SerializeField] private float startingAnimationSpeed = 1f;
-    [SerializeField] private float startingAnimationSpeedIncrement = 0.2f;
+
     [SerializeField] private int enemyCount;
+    [SerializeField] private Direction direction;
 
     private void OnEnable() {
-        speed = startingSpeed;
-        speedIncrement = startingSpeedIncrement;
-        animationSpeed = startingAnimationSpeed;
-        animationSpeedIncrement = startingAnimationSpeedIncrement;
+        currentSpeed = startingSpeed;
+        currentAnimationSpeed = startingAnimationSpeed;
         direction = Direction.RIGHT;
         enemyCount = 0;
     }
+
     public void Freeze() {
         speedIncrement = 0;
-        speed = 0;
-        animationSpeed = 0;
+        currentSpeed = 0;
+        currentAnimationSpeed = 0;
     }
+
     public void AddEnemy() {
         enemyCount++;
     }
@@ -48,12 +50,21 @@ public class WaveData : ScriptableObject {
     }
 
     public float GetWaveSpeed() {
-        return speed;
+        return currentSpeed;
+    }
+
+    public void RestSpeedForWave(int waveNumber) {
+        currentSpeed = startingSpeed + waveNumber * waveSpeedIncrement;
+        currentAnimationSpeed = startingAnimationSpeed + waveNumber * waveSpeedIncrement;
     }
 
     public void IncreaseWaveSpeed() {
-        speed += speedIncrement;
-        animationSpeed += animationSpeedIncrement;
+        currentSpeed += speedIncrement;
+        currentAnimationSpeed += animationSpeedIncrement;
+    }
+
+    public float GetWaveSpeedIncrement() {
+        return waveSpeedIncrement;
     }
 
     public Direction GetDirection() {
@@ -65,7 +76,7 @@ public class WaveData : ScriptableObject {
     }
 
     public float GetAnimationSpeed() {
-        return animationSpeed;
+        return currentAnimationSpeed;
     }
 
     public float GetFireRate() {
