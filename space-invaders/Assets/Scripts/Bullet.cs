@@ -6,38 +6,27 @@ public class Bullet : MonoBehaviour {
     [SerializeField] SpriteRenderer splashRenderer;
     [SerializeField] BulletDirection direction;
     [SerializeField] float speed;
-    [SerializeField] BoundsVariable bounds;
 
-    public Vector2[] Pixels { get; private set; }
-    public int PixelCount { get; private set; }
-    private bool hitRegistered = false;
     private Texture2D texture;
 
     void Start() {
-        //Time.timeScale = 0.1f;
         texture = splashRenderer.sprite.texture;
     }
     
     private void Update() {
-        if (direction == BulletDirection.DOWN && transform.position.y > bounds.bottom) {
+        if (Game.data.IsGameOver()) return;
+
+        if (direction == BulletDirection.DOWN && transform.position.y > Bounds.data.bottom) {
             // move down until reaching the bottom
             transform.Translate(speed * Time.deltaTime * Vector3.down);
         }
-        else if (direction == BulletDirection.UP && transform.position.y < bounds.top) {
+        else if (direction == BulletDirection.UP && transform.position.y < Bounds.data.top) {
             // move up until reaching the top
             transform.Translate(speed * Time.deltaTime * Vector3.up);
         } 
         else {
             Destroy(gameObject);
         }
-    }
-
-    public void RegisterHit() {
-        if (hitRegistered) return;
-        
-        gameObject.SetActive(false);
-        Destroy(gameObject);
-        hitRegistered = true;
     }
 
     private void OnTriggerEnter2D(Collider2D other) {

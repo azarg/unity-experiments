@@ -1049,6 +1049,7 @@ GameObject:
   - component: {fileID: 1059992718}
   - component: {fileID: 1059992720}
   - component: {fileID: 1059992719}
+  - component: {fileID: 1059992721}
   m_Layer: 5
   m_Name: HighScore
   m_TagString: Untagged
@@ -1117,6 +1118,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1059992717}
   m_CullTransparentMesh: 1
+--- !u!114 &1059992721
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1059992717}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d34c547aef7f2345902715c96dfb626, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1075177435
 GameObject:
   m_ObjectHideFlags: 0
@@ -1296,9 +1309,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 553150a75f5f40348a56e9ea6ed4dc5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waveData: {fileID: 11400000, guid: b39b1526c0152c94d952aab5b3588059, type: 2}
-  score: {fileID: 11400000, guid: 3ee805465e97d3d4e8eee03261a7415c, type: 2}
-  highScoreDisplay: {fileID: 0}
 --- !u!4 &1393709325
 Transform:
   m_ObjectHideFlags: 0

@@ -9,7 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c53650ccc02e7c14abd4b663d16bfcca, type: 3}
-  m_Name: Score
+  m_Script: {fileID: 11500000, guid: 41f771bc52442304282095e500f3cb3f, type: 3}
+  m_Name: Bounds
   m_EditorClassIdentifier: 
-  value: 0
+  top: 5.5
+  bottom: -6
+  left: -6.3
+  right: 6.3
+  invastionLine: -5.6
+  enemySize: 1

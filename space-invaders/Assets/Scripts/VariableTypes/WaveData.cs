@@ -11,15 +11,15 @@ public class WaveData : ScriptableObject {
     [SerializeField] private float currentSpeed;
     [SerializeField] private float currentAnimationSpeed;
 
-    [SerializeField] private float startingSpeed = 2f;
-    [SerializeField] private float startingAnimationSpeed = 1f;
+    [SerializeField] private float startingSpeed = 0.3f;
+    [SerializeField] private float startingAnimationSpeed = 0.6f;
 
-    [SerializeField] private float speedIncrement = 0.2f;
-    [SerializeField] private float animationSpeedIncrement = 0.2f;
+    [SerializeField] private float speedIncrement = 0.05f;
+    [SerializeField] private float animationSpeedIncrement = 0.05f;
     [SerializeField] private float waveSpeedIncrement = 0.2f;
 
-    [SerializeField] private float fireRate = 0.2f;
-    [SerializeField] private float fireChance = 0.3f;
+    [SerializeField] private float fireRate = 0.5f;
+    [SerializeField] private float fireChance = 0.5f;
 
     [SerializeField] private int enemyCount;
     [SerializeField] private Direction direction;
@@ -29,12 +29,6 @@ public class WaveData : ScriptableObject {
         currentAnimationSpeed = startingAnimationSpeed;
         direction = Direction.RIGHT;
         enemyCount = 0;
-    }
-
-    public void Freeze() {
-        speedIncrement = 0;
-        currentSpeed = 0;
-        currentAnimationSpeed = 0;
     }
 
     public void AddEnemy() {
@@ -53,7 +47,7 @@ public class WaveData : ScriptableObject {
         return currentSpeed;
     }
 
-    public void RestSpeedForWave(int waveNumber) {
+    public void ResetSpeedForWave(int waveNumber) {
         currentSpeed = startingSpeed + waveNumber * waveSpeedIncrement;
         currentAnimationSpeed = startingAnimationSpeed + waveNumber * waveSpeedIncrement;
     }

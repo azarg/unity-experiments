@@ -3,15 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour {
-    [SerializeField] float moveSpeed;
     [SerializeField] float fireDelay = 1f;
-    [SerializeField] BoundsVariable bounds;
     [SerializeField] Transform bulletPrefab;
     [SerializeField] Transform bulletSpawn;
     private bool canFire = true;
     private float fireTime;
 
     private void Update() {
+        if (Game.data.IsGameOver()) return;
         HandleMovement();
         HandleFire();
     }
@@ -20,16 +19,18 @@ public class Player : MonoBehaviour {
         var inputVector = Vector3.zero;
         if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D)) {
             //move right
-            if (transform.position.x < bounds.right)
+            if (transform.position.x < Bounds.data.right)
                 inputVector += Vector3.right;
         }
         if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A)) {
             //move left
-            if (transform.position.x > bounds.left)
+            if (transform.position.x > Bounds.data.left)
                 inputVector += Vector3.left;
         }
 
-        transform.Translate(moveSpeed * Time.deltaTime * inputVector);
+        if (inputVector != Vector3.zero) {
+            transform.Translate(Game.data.GetPlayerSpeed() * Time.deltaTime * inputVector);
+        }
     }
 
     private void HandleFire() {

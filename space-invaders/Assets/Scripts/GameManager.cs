@@ -12,13 +12,8 @@ public class SaveData {
 public class GameManager : MonoBehaviour {
     public static GameManager Instance;
 
-
-    [SerializeField] private WaveData waveData;
-    [SerializeField] private IntVariable score;
-    [SerializeField] private Text highScoreDisplay;
     private readonly int mainScreenIndex = 1;
-
-    private int highScore;
+    private readonly int startScreenIndex = 0;
 
     private void Awake() {
         if (Instance != null) {
@@ -30,32 +25,31 @@ public class GameManager : MonoBehaviour {
     }
 
     private void Start() {
+        Game.data.OnGameOver += OnGameOver;
         LoadFromFile();
-        highScoreDisplay.text = highScore.ToString("0000");
     }
 
-    public void GameOver() {
-        waveData.Freeze();
+    private void OnGameOver() {
         SaveToFile();
     }
 
     private void Update() {
         if(Input.GetMouseButton(0)) {
-            SceneManager.LoadScene(mainScreenIndex);
+            if(SceneManager.GetActiveScene().buildIndex == startScreenIndex)
+                SceneManager.LoadScene(mainScreenIndex);
         }
     }
 
     public void SaveToFile() {
-        
-        int currentScore = score.GetValue();
-        Debug.Log($"saving to file. current score = {currentScore}, high score = {highScore}");
-        if (currentScore > highScore) {
+        int currentScore = Game.data.GetScore();
+        if (currentScore > Game.data.GetHighScore()) {
             // save new high score
             SaveData data = new SaveData();
             data.HighScore = currentScore;
 
             string json = JsonUtility.ToJson(data);
             File.WriteAllText(Application.persistentDataPath + "/savefile.json", json);
+            Game.data.SetHighScore(currentScore);
         }
     }
 
@@ -64,7 +58,7 @@ public class GameManager : MonoBehaviour {
         if (File.Exists(path)) {
             string json = File.ReadAllText(path);
             SaveData data = JsonUtility.FromJson<SaveData>(json);
-            highScore = data.HighScore;
+            Game.data.SetHighScore(data.HighScore);
         }
     }
 }
