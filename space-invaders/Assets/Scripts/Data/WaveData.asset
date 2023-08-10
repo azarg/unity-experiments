@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de552aff2c53dad4fbef9296062be4c4, type: 3}
+  m_Name: WaveData
+  m_EditorClassIdentifier: 
+  currentSpeed: 0.3
+  currentAnimationSpeed: 0.6
+  startingSpeed: 0.3
+  startingAnimationSpeed: 0.6
+  speedIncrement: 0.05
+  animationSpeedIncrement: 0.05
+  waveSpeedIncrement: 0.2
+  fireRate: 0.5
+  fireChance: 0.5
+  enemyCount: 0
+  direction: 0
