@@ -9,7 +9,7 @@ public class GameData : ScriptableObject {
     public event Action OnGameOver;
     public event Action OnScoreChanged;
     public event Action OnPlayerKilled;
-
+    [SerializeField] private WaveData waveData;
     [SerializeField] private int playerLives;
     [SerializeField] private int startingPlayerLives = 3;
     [SerializeField] private int score;
@@ -41,7 +41,7 @@ public class GameData : ScriptableObject {
         gameOver = false;
         enemyMovementPaused = false;
         playerLives = startingPlayerLives;
-        Wave.data.ResetGame();
+        waveData.ResetGame();
     }
     
     public void PauseGame() {

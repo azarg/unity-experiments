@@ -16,9 +16,9 @@ public class EnemyMovement : MonoBehaviour {
     private float lastAnimationSpeed;
 
     private void Update() {
-        if (Game.data.IsEnemyMovementPaused()) return;
+        if (GameManager.Instance.gameData.IsEnemyMovementPaused()) return;
 
-        Direction currentDirection = Wave.data.GetDirection();
+        Direction currentDirection = GameManager.Instance.waveData.GetDirection();
         HandleAnimation();
         if (currentDirection != lastDirection) {
             // direction has changed (meaning one of the enemies has hit the bounds)
@@ -40,7 +40,7 @@ public class EnemyMovement : MonoBehaviour {
     }
 
     private void HandleAnimation() {
-        float animationSpeed = Wave.data.GetAnimationSpeed();
+        float animationSpeed = GameManager.Instance.waveData.GetAnimationSpeed();
         if (animationSpeed != lastAnimationSpeed) {
             animator.SetFloat(SPEED, animationSpeed);
             lastAnimationSpeed = animationSpeed;
@@ -49,30 +49,30 @@ public class EnemyMovement : MonoBehaviour {
 
     private void MoveInDirection(Direction direction) {
         var moveVector = direction == Direction.RIGHT ? Vector3.right : Vector3.left;
-        transform.Translate(Wave.data.GetWaveSpeed() * Time.deltaTime * moveVector);
+        transform.Translate(GameManager.Instance.waveData.GetWaveSpeed() * Time.deltaTime * moveVector);
     }
 
     private void ChangeDirectionIfBoundsHit() {
-        var direction = Wave.data.GetDirection();
+        var direction = GameManager.Instance.waveData.GetDirection();
         if (direction == Direction.RIGHT) {
-            if (transform.position.x > Bounds.data.right) {
-                Wave.data.SetDirection(Direction.LEFT);
+            if (transform.position.x > GameManager.Instance.boundsData.right) {
+                GameManager.Instance.waveData.SetDirection(Direction.LEFT);
             }
         }
         if (direction == Direction.LEFT) {
-            if (transform.position.x < Bounds.data.left) {
-                Wave.data.SetDirection(Direction.RIGHT);
+            if (transform.position.x < GameManager.Instance.boundsData.left) {
+                GameManager.Instance.waveData.SetDirection(Direction.RIGHT);
             }
         }
     }
 
     private void MoveDown() {
-        transform.Translate(Vector3.down * Bounds.data.enemySize * moveDownBy);
+        transform.Translate(Vector3.down * GameManager.Instance.boundsData.enemySize * moveDownBy);
     }
 
     private void HandleEnemyInvasion() {
-        if (transform.position.y < Bounds.data.invastionLine) {
-            Game.data.GameOver();
+        if (transform.position.y < GameManager.Instance.boundsData.invastionLine) {
+            GameManager.Instance.gameData.GameOver();
         }
     }
 }

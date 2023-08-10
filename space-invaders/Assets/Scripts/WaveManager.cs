@@ -15,15 +15,15 @@ public class WaveManager : MonoBehaviour {
 
     private void Start () {
         enemies = new GameObject[rows, columns];
-        Wave.data.OnNoEnemiesLeft += WaveData_OnNoEnemiesLeft;
+        GameManager.Instance.waveData.OnNoEnemiesLeft += WaveData_OnNoEnemiesLeft;
         waveNumber = 1;
         StartWaveDelayed();
     }
 
     private void WaveData_OnNoEnemiesLeft() {
-        if (Game.data.IsGamePaused()) return;
+        if (GameManager.Instance.gameData.IsGamePaused()) return;
         waveNumber++;
-        Wave.data.ResetSpeedForWave(waveNumber);
+        GameManager.Instance.waveData.ResetSpeedForWave(waveNumber);
         StartWaveDelayed();
     }
 
@@ -33,7 +33,7 @@ public class WaveManager : MonoBehaviour {
     private void StartWave () {
         ResetBunkers();
         SetupEnemies();
-        InvokeRepeating(nameof(HandleFire), 1, Wave.data.GetFireRate());
+        InvokeRepeating(nameof(HandleFire), 1, GameManager.Instance.waveData.GetFireRate());
     }
 
     private void ResetBunkers() {
@@ -44,11 +44,11 @@ public class WaveManager : MonoBehaviour {
     }
     
     private void CreateEnemy(int row, int col, int index) {
-        float box_size = Bounds.data.enemySize;
+        float box_size = GameManager.Instance.boundsData.enemySize;
         var enemy = Instantiate(enemyPrefabs[index]);
-        enemy.transform.position = new Vector3(Bounds.data.left + col * box_size + box_size / 2, Bounds.data.top - row * box_size - box_size / 2, 0);
+        enemy.transform.position = new Vector3(GameManager.Instance.boundsData.left + col * box_size + box_size / 2, GameManager.Instance.boundsData.top - row * box_size - box_size / 2, 0);
         enemies[row, col] = enemy;
-        Wave.data.AddEnemy();
+        GameManager.Instance.waveData.AddEnemy();
     }
 
     private void SetupEnemies () {
@@ -71,9 +71,9 @@ public class WaveManager : MonoBehaviour {
     }
 
     private void HandleFire() {
-        if (Game.data.IsGamePaused()) return;
+        if (GameManager.Instance.gameData.IsGamePaused()) return;
 
-        var doFire = Random.Range(0f, 1f) < Wave.data.GetFireChance();
+        var doFire = Random.Range(0f, 1f) < GameManager.Instance.waveData.GetFireChance();
         if (!doFire) return;
 
         // randomly select column
@@ -83,7 +83,7 @@ public class WaveManager : MonoBehaviour {
         for (int i = rows - 1; i >= 0; i--) {
             if (enemies[i, column] != null) {
                 var pos = enemies[i, column].transform.position;
-                pos.y -= Bounds.data.enemySize / 2;
+                pos.y -= GameManager.Instance.boundsData.enemySize / 2;
                 int bulletIndex = Random.Range(0, 3);
                 Instantiate(bulletPrefabs[bulletIndex], pos, Quaternion.identity);
                 break;

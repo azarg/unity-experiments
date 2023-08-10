@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7ee2ba8848bcc34e9806110b1dae49a, type: 3}
   m_Name: GameData
   m_EditorClassIdentifier: 
+  waveData: {fileID: 11400000, guid: b39b1526c0152c94d952aab5b3588059, type: 2}
   playerLives: 3
   startingPlayerLives: 3
   score: 0

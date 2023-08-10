@@ -9,6 +9,6 @@ public class HighScoreDisplay : MonoBehaviour {
 
     private void Start() {
         display = GetComponent<Text>();
-        display.text = Game.data.GetHighScore().ToString("0000");
+        display.text = GameManager.Instance.gameData.GetHighScore().ToString("0000");
     }
 }

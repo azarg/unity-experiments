@@ -12,11 +12,11 @@ public class Enemy : MonoBehaviour {
     private void OnTriggerEnter2D(Collider2D collision) {
         if (collision.transform.TryGetComponent<Bullet>(out _)) {
 
-            Game.data.IncreaseScore(this.scoreValue);
-            Wave.data.IncreaseWaveSpeed();
-            Wave.data.RemoveEnemy();
+            GameManager.Instance.gameData.IncreaseScore(this.scoreValue);
+            GameManager.Instance.waveData.IncreaseWaveSpeed();
+            GameManager.Instance.waveData.RemoveEnemy();
 
-            Game.data.PauseEnemyMovement();
+            GameManager.Instance.gameData.PauseEnemyMovement();
             StartCoroutine(PlayKillAnimation());
 
             Destroy(collision.gameObject);
@@ -27,7 +27,7 @@ public class Enemy : MonoBehaviour {
         defaultVisual.SetActive(false);
         destroyedVisual.SetActive(true);
         yield return new WaitForSeconds(destroyAnimationDuration);
-        Game.data.UnpauseEnemyMovement();
+        GameManager.Instance.gameData.UnpauseEnemyMovement();
         Destroy(gameObject);
     }
 }

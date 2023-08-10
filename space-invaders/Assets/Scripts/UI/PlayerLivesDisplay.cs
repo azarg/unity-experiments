@@ -8,7 +8,7 @@ public class PlayerLivesDisplay : MonoBehaviour {
     [SerializeField] private Image[] lives;
 
     private void Start() {
-        Game.data.OnPlayerKilled += OnPlayerKilled;
+        GameManager.Instance.gameData.OnPlayerKilled += OnPlayerKilled;
     }
 
     private void OnPlayerKilled() {

@@ -1,14 +1,14 @@
 using UnityEngine;
-using TMPro;
+using UnityEngine.UI;
 
 public class ScoreDisplay : MonoBehaviour {
-    [SerializeField] private TextMeshProUGUI scoreText;
+    [SerializeField] private Text scoreText;
 
     private void Start () {
-        Game.data.OnScoreChanged += Score_OnValueChanged;
+        GameManager.Instance.gameData.OnScoreChanged += Score_OnValueChanged;
     }
 
     private void Score_OnValueChanged() {
-        scoreText.text = Game.data.GetScore().ToString("000");
+        scoreText.text = GameManager.Instance.gameData.GetScore().ToString("000");
     }
 }

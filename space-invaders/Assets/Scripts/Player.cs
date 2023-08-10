@@ -15,7 +15,7 @@ public class Player : MonoBehaviour {
     private float destroyAnimationDuration = 1f;
 
     private void Update() {
-        if (Game.data.IsGamePaused()) return;
+        if (GameManager.Instance.gameData.IsGamePaused()) return;
         HandleMovement();
         HandleFire();
     }
@@ -24,17 +24,17 @@ public class Player : MonoBehaviour {
         var inputVector = Vector3.zero;
         if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D)) {
             //move right
-            if (transform.position.x < Bounds.data.right)
+            if (transform.position.x < GameManager.Instance.boundsData.right)
                 inputVector += Vector3.right;
         }
         if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A)) {
             //move left
-            if (transform.position.x > Bounds.data.left)
+            if (transform.position.x > GameManager.Instance.boundsData.left)
                 inputVector += Vector3.left;
         }
 
         if (inputVector != Vector3.zero) {
-            transform.Translate(Game.data.GetPlayerSpeed() * Time.deltaTime * inputVector);
+            transform.Translate(GameManager.Instance.gameData.GetPlayerSpeed() * Time.deltaTime * inputVector);
         }
     }
 
@@ -54,8 +54,8 @@ public class Player : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D collision) {
         if(collision.gameObject.TryGetComponent<Bullet>(out _)){
-            Game.data.DecreasePlayerLives();
-            Game.data.PauseGame();
+            GameManager.Instance.gameData.DecreasePlayerLives();
+            GameManager.Instance.gameData.PauseGame();
 
             StartCoroutine(PlayKillAnimation());
 
@@ -68,7 +68,7 @@ public class Player : MonoBehaviour {
         defaultVisual.SetActive(false);
         destroyVisual.SetActive(true);
         yield return new WaitForSeconds(destroyAnimationDuration);
-        Game.data.UnpauseGame();
+        GameManager.Instance.gameData.UnpauseGame();
 
         defaultVisual.SetActive(true);
         destroyVisual.SetActive(false);
