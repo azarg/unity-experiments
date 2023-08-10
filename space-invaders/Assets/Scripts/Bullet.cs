@@ -2,16 +2,13 @@ using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 
+public enum BulletDirection { UP, DOWN }
+
 public class Bullet : MonoBehaviour {
-    [SerializeField] SpriteRenderer splashRenderer;
     [SerializeField] BulletDirection direction;
     [SerializeField] float speed;
 
-    private Texture2D texture;
-
-    void Start() {
-        texture = splashRenderer.sprite.texture;
-    }
+    public BulletDirection GetDirection() => direction;
     
     private void Update() {
         if (Game.data.IsGameOver()) return;
@@ -26,16 +23,6 @@ public class Bullet : MonoBehaviour {
         } 
         else {
             Destroy(gameObject);
-        }
-    }
-
-    private void OnTriggerEnter2D(Collider2D other) {
-        if (other.gameObject.TryGetComponent<Bunker>(out var bunker)) {
-            var result = bunker.Hit(this.transform.position, direction, texture);
-            if (result) {
-                gameObject.SetActive(false);
-                Destroy(gameObject);
-            }
         }
     }
 }
