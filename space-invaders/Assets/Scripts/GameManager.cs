@@ -35,8 +35,14 @@ public class GameManager : MonoBehaviour {
 
     private void Update() {
         if(Input.GetMouseButton(0)) {
-            if(SceneManager.GetActiveScene().buildIndex == startScreenIndex)
+            if (SceneManager.GetActiveScene().buildIndex == startScreenIndex) {
                 SceneManager.LoadScene(mainScreenIndex);
+                Game.data.ResetGame();
+            }
+        }
+        if(Input.GetKeyDown(KeyCode.Escape)) {
+            if (SceneManager.GetActiveScene().buildIndex == mainScreenIndex)
+                SceneManager.LoadScene(startScreenIndex);
         }
     }
 

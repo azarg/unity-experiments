@@ -11,7 +11,7 @@ public class Bullet : MonoBehaviour {
     public BulletDirection GetDirection() => direction;
     
     private void Update() {
-        if (Game.data.IsGameOver()) return;
+        if (Game.data.IsGamePaused()) return;
 
         if (direction == BulletDirection.DOWN && transform.position.y > Bounds.data.bottom) {
             // move down until reaching the bottom

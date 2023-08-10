@@ -21,7 +21,7 @@ public class WaveManager : MonoBehaviour {
     }
 
     private void WaveData_OnNoEnemiesLeft() {
-        if (Game.data.IsGameOver()) return;
+        if (Game.data.IsGamePaused()) return;
         waveNumber++;
         Wave.data.ResetSpeedForWave(waveNumber);
         StartWaveDelayed();
@@ -71,7 +71,7 @@ public class WaveManager : MonoBehaviour {
     }
 
     private void HandleFire() {
-        if (Game.data.IsGameOver()) return;
+        if (Game.data.IsGamePaused()) return;
 
         var doFire = Random.Range(0f, 1f) < Wave.data.GetFireChance();
         if (!doFire) return;

@@ -6,11 +6,16 @@ public class Player : MonoBehaviour {
     [SerializeField] float fireDelay = 1f;
     [SerializeField] Transform bulletPrefab;
     [SerializeField] Transform bulletSpawn;
+
+    [SerializeField] GameObject defaultVisual;
+    [SerializeField] GameObject destroyVisual;
+
     private bool canFire = true;
     private float fireTime;
+    private float destroyAnimationDuration = 1f;
 
     private void Update() {
-        if (Game.data.IsGameOver()) return;
+        if (Game.data.IsGamePaused()) return;
         HandleMovement();
         HandleFire();
     }
@@ -45,5 +50,27 @@ public class Player : MonoBehaviour {
                 fireTime = Time.time;
             }
         }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision) {
+        if(collision.gameObject.TryGetComponent<Bullet>(out _)){
+            Game.data.DecreasePlayerLives();
+            Game.data.PauseGame();
+
+            StartCoroutine(PlayKillAnimation());
+
+            Destroy(collision.gameObject);
+        }
+    }
+
+    IEnumerator PlayKillAnimation() {
+        
+        defaultVisual.SetActive(false);
+        destroyVisual.SetActive(true);
+        yield return new WaitForSeconds(destroyAnimationDuration);
+        Game.data.UnpauseGame();
+
+        defaultVisual.SetActive(true);
+        destroyVisual.SetActive(false);
     }
 }

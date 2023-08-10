@@ -16,6 +16,30 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 1629610638030161277, guid: aeb79ca57f7509a4dac25b8f2af2151c, type: 3}
+      propertyPath: m_Size.x
+      value: 0.03125
+      objectReference: {fileID: 0}
+    - target: {fileID: 1629610638030161277, guid: aeb79ca57f7509a4dac25b8f2af2151c, type: 3}
+      propertyPath: m_Size.y
+      value: 0.1875
+      objectReference: {fileID: 0}
+    - target: {fileID: 1629610638030161277, guid: aeb79ca57f7509a4dac25b8f2af2151c, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: af68b13b08ea69e4da6c765b3e329184, type: 3}
+    - target: {fileID: 1629610638030161277, guid: aeb79ca57f7509a4dac25b8f2af2151c, type: 3}
+      propertyPath: m_Color.b
+      value: 0.1254902
+      objectReference: {fileID: 0}
+    - target: {fileID: 1629610638030161277, guid: aeb79ca57f7509a4dac25b8f2af2151c, type: 3}
+      propertyPath: m_Color.r
+      value: 0.1254902
+      objectReference: {fileID: 0}
+    - target: {fileID: 1629610638030161277, guid: aeb79ca57f7509a4dac25b8f2af2151c, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3001338915804734406, guid: aeb79ca57f7509a4dac25b8f2af2151c, type: 3}
       propertyPath: speed
       value: 20

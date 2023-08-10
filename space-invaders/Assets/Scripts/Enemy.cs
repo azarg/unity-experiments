@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour {
     [SerializeField] private int scoreValue;
+    [SerializeField] private GameObject defaultVisual;
+    [SerializeField] private GameObject destroyedVisual;
+
+    private float destroyAnimationDuration = 0.1f;
 
     private void OnTriggerEnter2D(Collider2D collision) {
         if (collision.transform.TryGetComponent<Bullet>(out _)) {
@@ -12,8 +16,18 @@ public class Enemy : MonoBehaviour {
             Wave.data.IncreaseWaveSpeed();
             Wave.data.RemoveEnemy();
 
-            Destroy(gameObject);
+            Game.data.PauseEnemyMovement();
+            StartCoroutine(PlayKillAnimation());
+
             Destroy(collision.gameObject);
         }
+    }
+
+    IEnumerator PlayKillAnimation() {
+        defaultVisual.SetActive(false);
+        destroyedVisual.SetActive(true);
+        yield return new WaitForSeconds(destroyAnimationDuration);
+        Game.data.UnpauseEnemyMovement();
+        Destroy(gameObject);
     }
 }

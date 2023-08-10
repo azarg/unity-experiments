@@ -25,6 +25,11 @@ public class WaveData : ScriptableObject {
     [SerializeField] private Direction direction;
 
     private void OnEnable() {
+        ResetGame();
+    }
+    
+    public void ResetGame() {
+        OnNoEnemiesLeft = null;
         currentSpeed = startingSpeed;
         currentAnimationSpeed = startingAnimationSpeed;
         direction = Direction.RIGHT;

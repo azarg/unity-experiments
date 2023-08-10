@@ -16,7 +16,7 @@ public class EnemyMovement : MonoBehaviour {
     private float lastAnimationSpeed;
 
     private void Update() {
-        if (Game.data.IsGameOver()) return;
+        if (Game.data.IsEnemyMovementPaused()) return;
 
         Direction currentDirection = Wave.data.GetDirection();
         HandleAnimation();

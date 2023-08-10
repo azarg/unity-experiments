@@ -16,6 +16,26 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 1629610638030161277, guid: aeb79ca57f7509a4dac25b8f2af2151c, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -296886250, guid: fc0c543219674314f88c87392f85c15b, type: 3}
+    - target: {fileID: 1629610638030161277, guid: aeb79ca57f7509a4dac25b8f2af2151c, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1629610638030161277, guid: aeb79ca57f7509a4dac25b8f2af2151c, type: 3}
+      propertyPath: m_Color.g
+      value: 0.13333334
+      objectReference: {fileID: 0}
+    - target: {fileID: 1629610638030161277, guid: aeb79ca57f7509a4dac25b8f2af2151c, type: 3}
+      propertyPath: m_Color.r
+      value: 0.13333334
+      objectReference: {fileID: 0}
+    - target: {fileID: 1629610638030161277, guid: aeb79ca57f7509a4dac25b8f2af2151c, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3001338915804734406, guid: aeb79ca57f7509a4dac25b8f2af2151c, type: 3}
       propertyPath: speed
       value: 6
@@ -68,6 +88,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: a6993951f020c4343940d992e6aaa141, type: 3}
+    - target: {fileID: 8432306652931004107, guid: aeb79ca57f7509a4dac25b8f2af2151c, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 1fe725d466bdc0844b95d01d22c24b35, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
