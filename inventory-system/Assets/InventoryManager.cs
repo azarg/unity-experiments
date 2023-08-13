@@ -15,18 +15,21 @@ public class InventoryManager : MonoBehaviour
     }
 
     public bool AddItem(Item item) {
-        for(int i = 0; i < inventorySlots.Length; i++) {
+        for (int i = 0; i < inventorySlots.Length; i++) {
+            var slot = inventorySlots[i];
+            var inventoryItem = slot.inventoryItem;
+            if (inventoryItem != null 
+                    && item == inventoryItem.Item 
+                    && inventoryItem.Item.maxStackSize > inventoryItem.ItemCount) {
+                inventoryItem.IncreaseCount();
+                return true;
+            }
+        }
+        for (int i = 0; i < inventorySlots.Length; i++) {
             var slot = inventorySlots[i];
             if (slot.IsEmpty()) {
                 SpawnNewItem(item, slot);
                 return true;
-            }
-            else {
-                var inventoryItem = slot.inventoryItem;
-                if (inventoryItem.Item.maxStackSize > inventoryItem.ItemCount && item == inventoryItem.Item) {
-                    inventoryItem.IncreaseCount();
-                    return true;
-                }
             }
         }
         return false;
