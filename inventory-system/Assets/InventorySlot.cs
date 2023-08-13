@@ -5,23 +5,15 @@ using UnityEngine.EventSystems;
 
 public class InventorySlot : MonoBehaviour, IDropHandler 
 {
-    private Item item;
+    public InventoryItem inventoryItem;
 
     public bool IsEmpty() {
-        return item == null;
-    }
-
-    public void RemoveItem() {
-        item = null;
-    }
-
-    public void SetItem(Item item) {
-        this.item = item;
+        return inventoryItem == null;
     }
 
     public void OnDrop(PointerEventData eventData) {
-        if (item == null) {
-            var inventoryItem = eventData.pointerDrag.GetComponent<InventoryItem>();
+        if (inventoryItem == null) {
+            inventoryItem = eventData.pointerDrag.GetComponent<InventoryItem>();
             inventoryItem.MoveToInventorySlot(this);
         }
     }

@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Rope
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: e0b29b674779a0249959c4204230fca5, type: 3}
-  stackable: 1
   prefab: {fileID: 2289149785982737170, guid: 788b6013aafd0b84c9058938387a87d1, type: 3}
+  maxStackSize: 1

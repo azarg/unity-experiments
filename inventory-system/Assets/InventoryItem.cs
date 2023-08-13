@@ -12,10 +12,22 @@ using UnityEngine.UI;
 public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     // this is where the item's inventory image is displayed
-    [SerializeField] private Image image;
+    [SerializeField] private Image itemImage;
+    [SerializeField] private Text countDisplay;
 
     // An Item (scriptable object) that this inventory item represents
     public Item Item { get; private set; }
+
+    private int itemCount;
+    public int ItemCount {
+        get {
+            return itemCount;
+        }
+        private set {
+            itemCount = value;
+            RefreshCountDisplay();
+        }
+    }
 
     // need to remember the current inventory slot and the inventory slot before dragging starts
     // this is needed to support drag/drop functionality
@@ -27,22 +39,35 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     /// </summary>
     /// <param name="newItem">The item that this inventory item represents</param>
     /// <param name="inventorySlot">The inventory slot to move the item to</param>
-    public void Initialize(Item newItem, InventorySlot inventorySlot) {
+    public void Initialize(Item newItem, InventorySlot inventorySlot, int count = 1) {
         Item = newItem;
+        ItemCount = count;
         MoveToInventorySlot(inventorySlot);
 
-        image.sprite = newItem.sprite;
+        itemImage.sprite = newItem.sprite;
+    }
+
+    public void IncreaseCount(int count = 1) {
+        ItemCount += count;
+    }
+    public void DecreaseCount(int count = 1) {
+        ItemCount -= count;
+    }
+
+    private void RefreshCountDisplay() {
+        countDisplay.text = ItemCount.ToString();
+        countDisplay.gameObject.SetActive(ItemCount > 1);
     }
 
     public void MoveToInventorySlot(InventorySlot inventorySlot) {
         this.inventorySlot = inventorySlot;
-        inventorySlot.SetItem(Item);
+        inventorySlot.inventoryItem = this;
 
         transform.SetParent(inventorySlot.transform);
     }
 
     public void OnBeginDrag(PointerEventData eventData) {
-        image.raycastTarget = false;
+        itemImage.raycastTarget = false;
 
         // Remember the original inventory slot when dragging starts.
         // We need this so that we can move the inventory item back to this inventory slot
@@ -54,12 +79,12 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     }
 
     public void OnEndDrag(PointerEventData eventData) {
-        image.raycastTarget = true;
+        itemImage.raycastTarget = true;
 
         if (this.inventorySlotBeforeDrag != inventorySlot) {
             // Item's inventory slot has changed, i.e. it was dropped on another inventory slot.
             // remove the item from the previous inventory slot
-            inventorySlotBeforeDrag.RemoveItem();
+            inventorySlotBeforeDrag.inventoryItem = null;
         }
         else {
             // Item's inventory slot has not changed after drag/drop, 

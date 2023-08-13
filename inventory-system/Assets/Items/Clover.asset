@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Clover
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 7c25f9dee60b0204192d065fac7df8f3, type: 3}
-  stackable: 1
   prefab: {fileID: 2289149785982737170, guid: dc451967e913e2a49bf521a8965ea5e0, type: 3}
+  maxStackSize: 10

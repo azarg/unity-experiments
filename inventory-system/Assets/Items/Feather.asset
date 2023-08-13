@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Feather
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 067444548665d434d9bd4dd4096b9985, type: 3}
-  stackable: 1
   prefab: {fileID: 2289149785982737170, guid: 596a305aa9c7f1749a6c5a95cd4f446a, type: 3}
+  maxStackSize: 10

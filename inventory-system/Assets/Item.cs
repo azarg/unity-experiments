@@ -6,6 +6,6 @@ using UnityEngine;
 public class Item : ScriptableObject
 {
     public Sprite sprite;
-    public bool stackable = true;
     public GameObject prefab;
+    public int maxStackSize = 1;
 }

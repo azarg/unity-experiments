@@ -21,6 +21,13 @@ public class InventoryManager : MonoBehaviour
                 SpawnNewItem(item, slot);
                 return true;
             }
+            else {
+                var inventoryItem = slot.inventoryItem;
+                if (inventoryItem.Item.maxStackSize > inventoryItem.ItemCount && item == inventoryItem.Item) {
+                    inventoryItem.IncreaseCount();
+                    return true;
+                }
+            }
         }
         return false;
     }
